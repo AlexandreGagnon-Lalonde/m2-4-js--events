@@ -5,6 +5,8 @@
 
 // Hints:
 // - Target the <body>
+// - By default, the <body> will be 0px tall. You can add a style in the
+//   `<style>` tags to fill the viewport height.
 
 // OPTIONAL
 // Feel free to add some CSS to this once you're done
