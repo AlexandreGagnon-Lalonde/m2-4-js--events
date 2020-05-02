@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
+    <title>CB-NW-3 Workshop 7 - Exercise 1.0</title>
     <style>
-        
+      body {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+      }
+      button {
+        display: block;
+        flex: 1;
+        width: 100%;
+        font-size: 3rem;
+        color: white;
+        background-color:darkslateblue;
+        opacity: 0.6;
+        border: none;
+        transition: opacity 0.2s ease-out;
+      }
+      button:hover, button:focus {
+        opacity: 1;
+      }
+      p {
+        display: flex;
+        flex: 8;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        color: black;
+        font-size: 36px;
+        font-family: monospace;
+      }
     </style>
-</head>
-<body>
-    <p class="result" id="result"></p>
+  </head>
+  <body>
+    <p class="result" id="result">You have 1 second to click in the white area.</p>
+    <button>Start</button>
     <script src="app.js"></script>
-</body>
-
+  </body>
 </html>
