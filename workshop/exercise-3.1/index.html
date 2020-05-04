@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+  <head>
+    <title>CB-NW-3 Workshop 7 - Exercise 3.1</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .container {
+        height: 100vh;
+        width: 100%;        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
+      }
+      button {
+        margin: 5px;
+        border-radius: 10px;
+        background-color: #ce3131;
+        color: white;
+        font-size: xx-large;
+        border: none;
+        opacity: 0.85;
+        transition: opacity 0.2s ease-out;
+      }
+      button:hover {
+        opacity: 1;
+      }
+      .green {
+        background-color: #31ce31;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
