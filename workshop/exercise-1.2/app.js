@@ -21,3 +21,66 @@
 // Stretch goal
 // Make the countdown live (show a countdown that updates several times a
 // second)
+
+// select useful html elements
+let button = document.querySelector('button');
+let timeText = document.querySelector('.time-text');
+let time = document.querySelector('#time');
+let resultText = document.querySelector('.result');
+let playZone = document.querySelector('.play-zone');
+let countdown = document.querySelector('.countdown');
+// create gameLoss variable for setTimeout
+let gameLoss;
+
+button.addEventListener('click', function(event) {
+  // create random time between 3 and 5 seconds
+  let randomTime = Math.floor(Math.random() * 3) + 3;
+  // remove gameLoss changes
+  clearTimeout(gameLoss);
+  // update background to white after games
+  playZone.style.backgroundColor = '#fff';
+  // show how much time they have to click
+  time.innerText = randomTime;
+  // clear .result HTML
+  resultText.innerText = '';
+  // change button text
+  button.innerText = 'Click, quick!'
+  // text color to be visible on white
+  playZone.style.color = '#000';
+  // clear message for new game
+  countdown.innerText = '';
+  // delay before failure screen
+  gameLoss = setTimeout(function() {
+    // remove the win effects
+    playZone.removeEventListener('click', gameWin);
+    // custom message when game is over
+    timeText.innerText = `You had ${randomTime} seconds to click`;
+    // red background
+    playZone.style.backgroundColor = '#ce3131';
+    // loss message
+    resultText.innerText = 'Better luck next time';
+    // new button message after game
+    button.innerText = 'Try again'
+    // text color to white
+    playZone.style.color = '#fff';
+    // generic message for the player
+    countdown.innerText = 'Press the button to try again'
+  }, randomTime * 1000)
+  // add the click listener for a win
+  playZone.addEventListener('click', gameWin);
+})
+
+function gameWin() {
+  // remove loss effect
+  clearTimeout(gameLoss);
+  // green background
+  playZone.style.backgroundColor = 'green';
+  // win message
+  resultText.innerText = 'Success';
+  // new button message after game
+  button.innerText = 'Try again'
+  // text color to white
+  playZone.style.color = '#fff';
+  // generic message for the player
+  countdown.innerText = 'Press the button to try again'
+}

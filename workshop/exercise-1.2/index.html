@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>CB-NW-3 Workshop 7 - Exercise 1.2</title>
     <style>
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      div {
+        flex: 8;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        font-size: 3rem;
+      }
+      button {
+        flex: 1;
+        width: 100%;
+        border: none;
+        color: white;
+        background-color: #3131ce;
+        font-size: 4rem;
+        opacity: 0.7;
+        transition: opacity 0.3s ease-out;
+      }
+      button:hover {
+        opacity: 1;
+      }
+      button:focus {
+        outline: none;
+      }
     </style>
   </head>
   <body>
-    <p class="time-text">You have <span id="time"></span> seconds to click</p>
-    <p class="result" id="result"></p>
+    <div class="play-zone">
+      <p class="time-text">You have <span id="time">X</span> seconds to click</p>
+      <p class="countdown">Press the button to start.</p>
+      <p class="result" id="result"></p>
+    </div>
+    <button>Start</button>
     <script src="app.js"></script>
   </body>
 </html>
