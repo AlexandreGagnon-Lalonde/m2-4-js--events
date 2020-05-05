@@ -1,21 +1,48 @@
 body {
-  margin: 100px 200px;
+  margin: 0;
   display: flex;
   justify-content: center;
-  height: calc(100vh - 200px);
+  height: 100vh;
   align-items: center;
 }
 .command {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  box-shadow: 0px 0px 23px -2px rgba(0,0,0,0.75);
+  border-radius: 10px;
+  width: 500px;
+  height: 300px;
 }
 
 .gameStartButton {
   grid-row: 2;
   grid-column: 1 / 3;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: white;
+  font-size: xx-large;
+  background-color: #3131ce;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-out;
+}
+.gameStartButton:hover {
+  opacity: 1;
 }
 
+input.numberOfButtons {
+  border-top-left-radius: 10px;
+  border: none;
+  padding-left: 10px;
+  font-size: x-large;
+}
+input.timeToPlay {
+  border-top-right-radius: 10px;
+  border: none;
+  padding-left: 10px;
+  font-size: x-large;
+}
 .result {
   display: none;
   position: absolute;
@@ -23,18 +50,28 @@ body {
   left: 0;
   right: 0;
   text-align: center;
+  font-size: xx-large;
 }
 
-.green {
+button.green {
   background-color: #31ce31;
 }
 
 .gameDiv {
-  border: 1px solid black;
+  outline: 1px solid black;
   width: 100%;
   height: 100%;
 }
 .gameButton {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  background-color: #ce3131;
+  color: white;
+  font-size: x-large;
+  border: none;
+  border-radius: 50%;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-out;
+}
+.gameButton:hover {
+  opacity: 1;
 }

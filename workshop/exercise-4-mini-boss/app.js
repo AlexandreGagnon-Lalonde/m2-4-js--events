@@ -3,53 +3,76 @@ let commands = document.querySelector('.command');
 let body = document.querySelector('body');
 let timeboard = document.querySelector('.result');
 let timeValue = document.querySelector('.timeBoard');
-let gameDiv;
 let gameButton;
-let amountOfSquare = 5;
-let gameTime = 3;
-let gameStatus = [];
+let amountOfSquare;
+let gameTime;
 let timeTimeout;
-// const gridSize;
-// const gameTime;
+let buttonsClicked = [];
+let buttonsInGame = [];
 
 gameStartButton.addEventListener('click', function() {
-  commands.style.display = 'none';
-
-  body.style.display = 'grid';
-  body.style.gridTemplateColumns = 'repeat(20, 1fr)';
-  body.style.gridTemplateRows = 'repeat(20, 1fr)';
-  body.style.border = '1px solid black';
-
-  timeValue.innerText = `${gameTime}`;
-
-  timeboard.style.display = 'block';
-
-  for(let i = 0; i < 400; i++) {
-    gameDiv = document.createElement('div');
-    gameDiv.classList.add('gameDiv');
-    body.appendChild(gameDiv);
+  gameTime = document.querySelector('.timeToPlay');
+  amountOfSquare = document.querySelector('.numberOfButtons');
+  if (gameTime.value >= 1 && gameTime.value <= 100 && amountOfSquare.value <= 100 && amountOfSquare.value >= 1 ) {
+    commands.style.display = 'none';
+    timeValue.innerText = `${gameTime.value}`;
+    timeboard.style.display = 'block';
+    for(let i = 0; i < amountOfSquare.value; i++) {
+      let top = Math.random() * 100;
+      let left = Math.random() * 100;
+      let widthHeight = (Math.random() * 30) + 30;
+      gameButton = document.createElement('button');
+      gameButton.classList.add('gameButton');
+      gameButton.innerText = 'B';
+      gameButton.style.width = `${widthHeight}px`;
+      gameButton.style.height = `${widthHeight}px`;
+      if (top > 95) {
+        let bottom = 100 - top;
+        gameButton.style.bottom = `${bottom}%`
+      } else {
+        gameButton.style.top = `${top}%`
+      }
+      if (left > 95) {
+        let right = 100 - left;
+        gameButton.style.right = `${right}%`
+      } else {
+        gameButton.style.left = `${left}%`
+      }
+      gameButton.addEventListener('click', toggleButton);
+      body.appendChild(gameButton);
+      buttonsInGame.push(gameButton);
+    }
+    timeTimeout = setTimeout(gameLoss, gameTime.value * 1000);
+  } else {
+    alert('Pick positive values above 0')
   }
-
-  for(let i = 0; i < amountOfSquare; i++) {
-    gameDiv = document.querySelectorAll('.gameDiv');
-    gameButton = document.createElement('button');
-    gameButton.classList.add('gameButton');
-    gameButton.innerText = i + 1;
-    gameButton.addEventListener('click', toggleButton);
-    gameStatus.push(false);
-    gameDiv[i].appendChild(gameButton);
-  }
-
-  timeTimeout = setTimeout(gameLoss, gameTime * 1000);
 })
 
 function toggleButton() {
   this.classList.toggle('green');
+  if (buttonsClicked.indexOf(this) === -1) {
+    buttonsClicked.push(this);
+  } else {
+    buttonsClicked.pop();
+  }
+  if (buttonsClicked.length === buttonsInGame.length) {
+    clearInterval(timeTimeout);
+    timeboard.innerText = `Good job! You clicked all the buttons.`;
+    timeboard.style.zIndex = '1';
+    removeClickEvent();
+  }
 }
 
 function gameLoss() {
-  timeboard.innerText = `Better luck next time. You had ${12} buttons to click left.`;
+  removeClickEvent();
+  if ((buttonsInGame.length - buttonsClicked.length) === 1) {
+    timeboard.innerText = `Better luck next time. You had 1 button to click left.`;
+  } else {
+    timeboard.innerText = `Better luck next time. You had ${buttonsInGame.length - buttonsClicked.length} buttons to click left.`;
+  }
+}
 
+function removeClickEvent() {
   gameButton = document.querySelectorAll('.gameButton');
   for (let i = 0; i < gameButton.length; i++) {
     gameButton[i].removeEventListener('click', toggleButton);
