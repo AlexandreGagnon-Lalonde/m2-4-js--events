@@ -134,7 +134,6 @@ Handlers registered on nodes with children will also receive events that happen 
     <li>
       <a href="#"><img scr="..." /></a>
     </li>
-    ...
   </ul>
 </div>
 ```
