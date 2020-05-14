@@ -46,7 +46,7 @@ input.timeToPlay {
 .result {
   display: none;
   position: absolute;
-  top: 20px;
+  top: 100px;
   left: 0;
   right: 0;
   text-align: center;
